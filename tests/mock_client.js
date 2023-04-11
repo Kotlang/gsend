@@ -114,6 +114,7 @@ class MockClient {
   constructor() {
     this.groups = groups;
     this.members = members;
+    this.sentMessages = [];
   }
 
   async getAllGroups() {
@@ -122,6 +123,10 @@ class MockClient {
 
   async getGroupMembers(groupId) {
     return this.members[groupId];
+  }
+
+  async sendText(chatId, message) {
+    this.sentMessages.push({ chatId, message });
   }
 
   async close() {}

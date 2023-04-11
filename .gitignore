@@ -5,3 +5,5 @@
 # venom specific
 /tokens/**
 
+# Input / output csvs
+*.csv

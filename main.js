@@ -70,41 +70,60 @@ async function main(clientFactory = singletonClientFactory) {
           default: null,
         });
       },
+
       async function (argv) {
         await executeCommandAndExit(listMembers, clientFactory, argv);
       }
     )
     .command(
       "send",
-      "Send message(s) to a list of recipients.",
+      "Send a message to a list of recipients.",
       (yargs) => {
-        yargs.option("to", {
+        yargs.option("recipients", {
+          alias: "to",
           describe: "List of recipients to deliver messages to",
           type: "array",
           default: [],
         });
 
-        yargs.option("recipients", {
+        yargs.option("recipients-file", {
+          alias: "r",
           describe:
             "A file containing list of new line separated phone numbers to deliver messages to",
           type: "string",
           default: null,
         });
 
-        yargs.option("message", {
+        yargs.option("text", {
+          alias: "t",
           describe: "A message to send",
           type: "string",
           default: null,
         });
 
-        yargs.option("message-files", {
+        yargs.option("message-file", {
+          alias: "m",
           describe: "A list of text files containing messages to be sent",
-          type: "array",
-          default: [],
+          type: "string",
+          default: null,
         });
       },
 
       async function (argv) {
+        if (argv.text === null && argv.messageFile === null) {
+          console.error(
+            "One of the options `--text` or `--message-file` must be specified"
+          );
+          return;
+        }
+
+        if (argv.recipients.length == 0 && !argv.recipientsFile) {
+          console.error(
+            "One of the options `--recipients` or `--recipients-file` must be specified"
+          );
+          return;
+        }
+
         await executeCommandAndExit(sendMessage, clientFactory, argv);
       }
     )
