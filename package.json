@@ -2,20 +2,20 @@
   "name": "gsend",
   "version": "1.0.0",
   "description": "",
-  "main": "gsend.js",
+  "main": "main.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {
+    "@json2csv/node": "^7.0.6",
+    "csv-parse": "^5.5.5",
+    "puppeteer": "^14.4.1",
+    "venom-bot": "^5.1.0"
+  },
   "scripts": {
-    "test": "jest",
-    "start": "node gsend.js"
+    "start": "node gsend.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "@json2csv/node": "^6.1.3",
-    "csv-parse": "^5.3.6",
-    "venom-bot": "^4.3.7",
-    "yargs": "^17.7.1"
-  },
-  "devDependencies": {
-    "jest": "^29.5.0"
-  }
+  "license": "ISC"
 }

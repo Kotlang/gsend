@@ -32,7 +32,7 @@ async function listMembers(client, config) {
 
     result.push.apply(
       result,
-      config.excludeGid
+      config.excludeGid || groupIds.length === 1
         ? members.map(toExternalModel)
         : members.map((member) => {
             return {
@@ -54,8 +54,8 @@ async function listMembers(client, config) {
 
 function toExternalModel(member) {
   return {
-    id: member.id._serialized,
     phone: member.id.user,
+    name: member.pushname
   };
 }
 

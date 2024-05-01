@@ -5,7 +5,7 @@ const { promisify } = require("util");
 const parser = new json2csv.AsyncParser({}, {}, {});
 
 async function listGroups(client, config) {
-  const groups = await client.getAllGroups();
+  const groups = await client.getAllChatsGroups();
   const result = groups.map(toExternalModel);
 
   const csv = await parser.parse(result).promise();
